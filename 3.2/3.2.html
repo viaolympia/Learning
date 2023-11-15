@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>DOM EXAMPLE</title>
+</head>
+<body>
+    <h1 id="pageTitle">HTML-DOC</h1>
+    <p class="main-paragraph"> JavaScript AND DOM </p>
+    <ul>
+        <li>Element 1</li>
+        <li>Element 2</li>
+        <li>Element 3</li>
+    </ul>
+    
+    <a href="#" id="link"> LINK </a>
+
+    <script>
+        // �������� 1: ������ ����� �� ����� ���������
+        const pageTitle = document.getElementById('pageTitle');
+        pageTitle.style.color = 'blue';
+        pageTitle.style.fontSize = '24px';
+        pageTitle.textContent = 'Scripts changes text';
+
+        // �������� 2: ������ �������� ������ �� ������ �� �����
+        const listItems = document.querySelectorAll('ul li');
+        listItems.forEach((item, index) => {
+            item.textContent = `Element ${index + 1} was changed by JS script`;
+        });
+
+        // �������� 3: �������� �� DOM �� ���� ������������
+        const link = document.getElementById('link');
+        const parentElement = link.parentElement;
+        const siblings = Array.from(parentElement.children).filter(el => el !== link);
+
+        link.href = 'https://www.example.com';
+        parentElement.style.border = '2px solid green';
+        siblings.forEach(sibling => sibling.style.fontWeight = 'bold');
+
+        // �������� 4: ��������� ��������� ���� ��� ���������
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
+            alert('User has clicked on link');
+        });
+    </script>
+</body>
+</html>
